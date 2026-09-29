@@ -1,6 +1,6 @@
 # claude-opencode-sessions / opencode-sessions — development & release tasks.
-# Requires: uv (https://docs.astral.sh/uv/), git; `claude` for plugin tasks;
-# a PyPI trusted publisher (or UV_PUBLISH_TOKEN) for publishing.
+# Requires: uv (https://docs.astral.sh/uv/), git; `claude` for plugin tasks.
+# Publishing uses twine with the credentials in ~/.pypirc (pypi + testpypi).
 # Compatible with the GNU make 3.81 that ships with macOS.
 
 .DEFAULT_GOAL := help
@@ -12,11 +12,10 @@ MARKETPLACE := barseghyanartur
 GITHUB_REPO := barseghyanartur/claude-plugin-opencode-sessions
 UV          ?= uv
 VERSION     := $(shell $(UV) version --short 2>/dev/null)
-TAG         := v$(VERSION)
 
 .PHONY: help install test cov lint fmt typecheck validate check run dev \
-	    install-local uninstall-local version bump build plugin-zip \
-	    publish-test publish release-check release submit clean
+	    install-local uninstall-local version version-check bump build \
+	    check-build test-release release tag submit clean
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | \
@@ -84,23 +83,19 @@ bump: ## Set the version: make bump BUMP=patch|minor|major, or VERSION=x.y.z
 	rm -f .claude-plugin/plugin.json.bak
 	@echo "Now add a $$($(UV) version --short) section to CHANGELOG.rst"
 
-build: clean ## Build sdist + wheel (uv build) and the plugin zip into dist/
+build: clean ## Build sdist + wheel into dist/
 	$(UV) build
-	$(MAKE) plugin-zip
 
-plugin-zip: ## Zip the committed plugin files (for `claude --plugin-url`)
-	@mkdir -p dist
-	git archive --format=zip --prefix=$(PLUGIN)/ -o dist/$(PLUGIN)-$(VERSION).zip HEAD \
-	    .claude-plugin hooks skills scripts src/claude_opencode_sessions README.rst LICENSE CHANGELOG.rst
-	@echo "dist/$(PLUGIN)-$(VERSION).zip"
+check-build: ## Check dist/ (twine check)
+	$(UV) run twine check --strict dist/*
 
-publish-test: build ## Upload to TestPyPI (needs UV_PUBLISH_TOKEN for test.pypi.org)
-	$(UV) publish --publish-url https://test.pypi.org/legacy/ dist/*.whl dist/*.tar.gz
+test-release: check build check-build ## Upload to TestPyPI (credentials from ~/.pypirc)
+	$(UV) run twine upload --repository testpypi dist/*
 
-publish: build ## Upload to PyPI by hand (normally `make release` does it via CI)
-	$(UV) publish dist/*.whl dist/*.tar.gz
+release: check build check-build ## Upload to PyPI (credentials from ~/.pypirc)
+	$(UV) run twine upload dist/* --verbose
 
-release: check ## Tag vX.Y.Z and push; CI publishes to PyPI + GitHub release
+tag: ## Tag vX.Y.Z and push (publishes the plugin version to marketplace users)
 	@test -z "$$(git status --porcelain)" || { echo "commit your changes first"; exit 1; }
 	git tag -a v$(VERSION) -m "v$(VERSION)"
 	git push origin HEAD v$(VERSION)
