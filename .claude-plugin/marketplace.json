@@ -1,0 +1,15 @@
+{
+  "name": "barseghyanartur",
+  "description": "Claude Code plugins by Artur Barseghyan",
+  "owner": {
+    "name": "Artur Barseghyan",
+    "email": "artur.barseghyan@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "opencode-sessions",
+      "source": "./",
+      "description": "Import your opencode sessions for the current repository into Claude Code, so you can open them with /resume. Runs in a hook, without calling the model."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "opencode-sessions",
+  "displayName": "opencode sessions",
+  "version": "0.1.0",
+  "description": "Import your opencode sessions for the current repository into Claude Code, so you can open them with /resume. Runs in a hook, without calling the model.",
+  "author": {
+    "name": "Artur Barseghyan",
+    "email": "artur.barseghyan@gmail.com",
+    "url": "https://github.com/barseghyanartur"
+  },
+  "homepage": "https://github.com/barseghyanartur/claude-plugin-opencode-sessions",
+  "repository": "https://github.com/barseghyanartur/claude-plugin-opencode-sessions",
+  "license": "MIT",
+  "keywords": [
+    "opencode",
+    "sessions",
+    "import",
+    "resume"
+  ]
+}

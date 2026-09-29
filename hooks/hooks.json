@@ -1,0 +1,17 @@
+{
+  "description": "Runs /opencode-sessions:import locally, without a model call.",
+  "hooks": {
+    "UserPromptExpansion": [
+      {
+        "matcher": "^(opencode-sessions:)?import$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/scripts/opencode-sessions\" hook",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}
