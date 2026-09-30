@@ -1,13 +1,44 @@
 ========================
 claude-opencode-sessions
 ========================
-Bring your `opencode <https://opencode.ai>`_ sessions into **Claude Code**.
+.. External references
 
-In Claude Code, run ``/opencode-sessions:import``. Your opencode sessions for
-the current repository become regular Claude Code conversations, titled
-``[opencode] …``. Then use ``/resume`` (or ``claude --resume``) to browse
-them, and press Enter to continue one.
+.. _opencode: https://opencode.ai
+.. _Claude Code: https://code.claude.com
+.. _uv: https://docs.astral.sh/uv/
 
+.. Internal references
+
+.. _claude-opencode-sessions: https://github.com/barseghyanartur/claude-plugin-opencode-sessions/
+.. _docs/design.md: https://github.com/barseghyanartur/claude-plugin-opencode-sessions/blob/main/docs/design.md
+.. _docs/schema-notes.md: https://github.com/barseghyanartur/claude-plugin-opencode-sessions/blob/main/docs/schema-notes.md
+
+Bring your `opencode`_ sessions into `Claude Code`_.
+
+.. image:: https://img.shields.io/pypi/v/claude-opencode-sessions.svg
+   :target: https://pypi.python.org/pypi/claude-opencode-sessions
+   :alt: PyPI Version
+
+.. image:: https://img.shields.io/pypi/pyversions/claude-opencode-sessions.svg
+    :target: https://pypi.python.org/pypi/claude-opencode-sessions/
+    :alt: Supported Python versions
+
+.. image:: https://github.com/barseghyanartur/claude-plugin-opencode-sessions/actions/workflows/ci.yml/badge.svg?branch=main
+   :target: https://github.com/barseghyanartur/claude-plugin-opencode-sessions/actions
+   :alt: Build Status
+
+.. image:: https://img.shields.io/badge/license-MIT-blue.svg
+   :target: https://github.com/barseghyanartur/claude-plugin-opencode-sessions/#License
+   :alt: MIT
+
+`claude-opencode-sessions`_ is a Claude Code plugin (and a command-line
+tool) that imports your opencode sessions for the current repository into
+Claude Code. Run ``/opencode-sessions:import``, then use ``/resume`` (or
+``claude --resume``) to browse the imported ``[opencode] …`` conversations
+and press Enter to continue one.
+
+Features
+========
 - **No model call, no tokens.** The import runs in a Claude Code hook and
   prints its report directly. Tokens are only spent once you resume a session
   and start typing, just like any other conversation.
@@ -19,16 +50,14 @@ them, and press Enter to continue one.
   worktree by default, or ``--worktrees`` for all worktrees of the repo.
 - Reads opencode's SQLite database **read-only**: opencode 1.2+ (1.x and 2.x
   layouts), with ``opencode export`` as a fallback.
-- Python 3.10+, standard library only. No network access.
-- The same package also works as a command-line tool:
-  ``claude-opencode-sessions`` runs ``import`` and ``list`` in the terminal.
+- No dependencies, no network access.
 
-.. contents:: Table of contents
-   :depth: 2
-   :local:
+Prerequisites
+=============
+Python 3.10+
 
-Install
-=======
+Installation
+============
 As a Claude Code plugin
 -----------------------
 .. code-block:: sh
@@ -49,7 +78,7 @@ or turn on auto-update for the marketplace under **Marketplaces** in
 
 The plugin runs the code bundled in the plugin itself, so it does not need
 the PyPI package. It needs a Python >= 3.10 on ``PATH`` (``python3``,
-``python3.1x``) or `uv <https://docs.astral.sh/uv/>`_. Note that
+``python3.1x``) or `uv`_. Note that
 ``/usr/bin/python3`` on macOS is 3.9. ``brew install python`` or
 ``uv python install 3.12`` fixes that, or set ``OCS_PYTHON=/path/to/python``.
 
@@ -177,9 +206,8 @@ How it works
   It runs ``opencode session list --format json`` and
   ``opencode export <id>``.
 
-See `docs/design.md <docs/design.md>`_ for the design and
-`docs/schema-notes.md <docs/schema-notes.md>`_ for the tables and fields
-that are read.
+See `docs/design.md`_ for the design and `docs/schema-notes.md`_ for the
+tables and fields that are read.
 
 Development
 ===========
@@ -191,58 +219,6 @@ Development
     make run ARGS="list --all"
     make dev         # claude --plugin-dir . (live plugin; /reload-plugins after edits)
     make install-local / make uninstall-local
-
-Publishing
-==========
-One version number covers both the PyPI package and the plugin. It lives in
-``pyproject.toml`` (managed with ``uv version``), and ``make bump`` copies it
-into ``.claude-plugin/plugin.json``.
-
-How each channel works
-----------------------
-- **Claude Code plugin:** there is no registry upload. This repository *is*
-  the marketplace (``.claude-plugin/marketplace.json``), so pushing to
-  ``main`` publishes. Users only receive an update when the ``version`` in
-  ``plugin.json`` changes, so every release must bump it.
-- **PyPI:** ``claude-opencode-sessions`` is uploaded with ``twine``, using
-  the credentials in ``~/.pypirc``, so you don't type them each time.
-- **Anthropic community marketplace (optional):** a reviewed listing in
-  ``anthropics/claude-plugins-community``, pinned to a commit. Submit through
-  the form that ``make submit`` prints the details for.
-
-One-time setup
---------------
-Put API tokens for PyPI and TestPyPI in ``~/.pypirc`` (``chmod 600``):
-
-.. code-block:: ini
-
-    [distutils]
-    index-servers =
-        pypi
-        testpypi
-
-    [pypi]
-    username = __token__
-    password = pypi-...
-
-    [testpypi]
-    repository = https://test.pypi.org/legacy/
-    username = __token__
-    password = pypi-...
-
-Release checklist
------------------
-.. code-block:: sh
-
-    make bump BUMP=minor     # or BUMP=patch|major, or VERSION=0.2.0
-    $EDITOR CHANGELOG.rst    # add the release notes
-    git commit -am "Release $(uv version --short)"
-    make test-release        # check, build, twine check, upload to TestPyPI
-    make release             # the same, upload to PyPI
-    make tag                 # tag vX.Y.Z and push (plugin users get the update)
-
-For the community marketplace, run ``make submit`` after the release and
-file the form.
 
 Troubleshooting
 ===============
@@ -256,3 +232,14 @@ scope roots for the current directory.
 License
 =======
 MIT
+
+Support
+=======
+For security issues contact me at the e-mail given in the `Author`_ section.
+
+For overall issues, go to
+`GitHub <https://github.com/barseghyanartur/claude-plugin-opencode-sessions/issues>`_.
+
+Author
+======
+Artur Barseghyan <artur.barseghyan@gmail.com>

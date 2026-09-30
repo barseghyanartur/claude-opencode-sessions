@@ -73,6 +73,21 @@ uninstall-local: ## Remove the local marketplace and the plugin
 	-claude plugin marketplace remove $(MARKETPLACE)
 
 # --- releasing --------------------------------------------------------------
+#
+# Release checklist:
+#
+#   make bump BUMP=minor     # or BUMP=patch|major, or VERSION=0.2.0
+#   $EDITOR CHANGELOG.rst    # add the release notes
+#   git commit -am "Release $(uv version --short)"
+#   make test-release        # check, build, twine check, upload to TestPyPI
+#   make release             # the same, upload to PyPI
+#   make tag                 # tag vX.Y.Z and push (plugin users get the update)
+#
+# Uploads use twine with the API tokens in ~/.pypirc ([pypi] and [testpypi],
+# username __token__), so no credentials are typed.
+#
+# Optional: list the plugin in Anthropic's community marketplace with the
+# details `make submit` prints.
 
 version: ## Print the current version
 	@echo $(VERSION)
