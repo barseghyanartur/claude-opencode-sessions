@@ -1,0 +1,17 @@
+{
+  "description": "Runs /copilot-sessions:import locally, without a model call.",
+  "hooks": {
+    "UserPromptExpansion": [
+      {
+        "matcher": "^(copilot-sessions:)?import$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/scripts/copilot-sessions\" hook",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}

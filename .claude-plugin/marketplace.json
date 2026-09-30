@@ -15,6 +15,11 @@
       "name": "codex-sessions",
       "source": "./plugins/codex-sessions",
       "description": "Import your Codex CLI sessions for the current repository into Claude Code, so you can open them with /resume. Runs in a hook, without calling the model."
+    },
+    {
+      "name": "copilot-sessions",
+      "source": "./plugins/copilot-sessions",
+      "description": "Import your GitHub Copilot CLI sessions for the current repository into Claude Code, so you can open them with /resume. Runs in a hook, without calling the model."
     }
   ]
 }

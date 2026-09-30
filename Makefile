@@ -7,7 +7,7 @@
 SHELL := /bin/bash
 UV    ?= uv
 
-PLUGINS := opencode-sessions codex-sessions
+PLUGINS := opencode-sessions codex-sessions copilot-sessions
 
 .PHONY: help install test cov lint fmt typecheck validate check dev clean
 

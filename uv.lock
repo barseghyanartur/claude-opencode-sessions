@@ -9,6 +9,7 @@ resolution-markers = [
 [manifest]
 members = [
     "claude-codex-sessions",
+    "claude-copilot-sessions",
     "claude-opencode-sessions",
     "claude-sessions-importer",
 ]
@@ -317,6 +318,31 @@ wheels = [
 name = "claude-codex-sessions"
 version = "0.1.0"
 source = { editable = "plugins/codex-sessions" }
+
+[package.dev-dependencies]
+dev = [
+    { name = "mypy" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "ruff" },
+    { name = "twine" },
+]
+
+[package.metadata]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "mypy", specifier = ">=1.11" },
+    { name = "pytest", specifier = ">=8" },
+    { name = "pytest-cov", specifier = ">=5" },
+    { name = "ruff", specifier = ">=0.6" },
+    { name = "twine", specifier = ">=6" },
+]
+
+[[package]]
+name = "claude-copilot-sessions"
+version = "0.1.0"
+source = { editable = "plugins/copilot-sessions" }
 
 [package.dev-dependencies]
 dev = [
