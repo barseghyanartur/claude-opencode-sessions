@@ -8,8 +8,8 @@
     "email": "artur.barseghyan@gmail.com",
     "url": "https://github.com/barseghyanartur"
   },
-  "homepage": "https://github.com/barseghyanartur/claude-codex-sessions",
-  "repository": "https://github.com/barseghyanartur/claude-codex-sessions",
+  "homepage": "https://github.com/barseghyanartur/claude-sessions-importer/tree/main/plugins/codex-sessions",
+  "repository": "https://github.com/barseghyanartur/claude-sessions-importer",
   "license": "MIT",
   "keywords": [
     "codex",

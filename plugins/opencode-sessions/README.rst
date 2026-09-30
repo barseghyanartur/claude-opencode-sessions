@@ -9,9 +9,9 @@ claude-opencode-sessions
 
 .. Internal references
 
-.. _claude-opencode-sessions: https://github.com/barseghyanartur/claude-opencode-sessions/
-.. _docs/design.md: https://github.com/barseghyanartur/claude-opencode-sessions/blob/main/docs/design.md
-.. _docs/schema-notes.md: https://github.com/barseghyanartur/claude-opencode-sessions/blob/main/docs/schema-notes.md
+.. _claude-opencode-sessions: https://github.com/barseghyanartur/claude-sessions-importer/tree/main/plugins/opencode-sessions/
+.. _docs/design.md: https://github.com/barseghyanartur/claude-sessions-importer/blob/main/plugins/opencode-sessions/docs/design.md
+.. _docs/schema-notes.md: https://github.com/barseghyanartur/claude-sessions-importer/blob/main/plugins/opencode-sessions/docs/schema-notes.md
 
 Bring your `opencode`_ sessions into `Claude Code`_.
 
@@ -23,12 +23,12 @@ Bring your `opencode`_ sessions into `Claude Code`_.
     :target: https://pypi.python.org/pypi/claude-opencode-sessions/
     :alt: Supported Python versions
 
-.. image:: https://github.com/barseghyanartur/claude-opencode-sessions/actions/workflows/ci.yml/badge.svg?branch=main
-   :target: https://github.com/barseghyanartur/claude-opencode-sessions/actions
+.. image:: https://github.com/barseghyanartur/claude-sessions-importer/actions/workflows/ci.yml/badge.svg?branch=main
+   :target: https://github.com/barseghyanartur/claude-sessions-importer/actions
    :alt: Build Status
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
-   :target: https://github.com/barseghyanartur/claude-opencode-sessions/#License
+   :target: https://github.com/barseghyanartur/claude-sessions-importer/#License
    :alt: MIT
 
 `claude-opencode-sessions`_ is a Claude Code plugin (and a command-line
@@ -62,14 +62,14 @@ As a Claude Code plugin
 -----------------------
 .. code-block:: sh
 
-    claude plugin marketplace add barseghyanartur/claude-opencode-sessions
+    claude plugin marketplace add barseghyanartur/claude-sessions-importer
     claude plugin install opencode-sessions@barseghyanartur
 
 Or inside a Claude Code session:
 
 .. code-block:: text
 
-    /plugin marketplace add barseghyanartur/claude-opencode-sessions
+    /plugin marketplace add barseghyanartur/claude-sessions-importer
     /plugin install opencode-sessions@barseghyanartur
 
 Update later with ``claude plugin update opencode-sessions@barseghyanartur``,
@@ -238,7 +238,7 @@ Support
 For security issues contact me at the e-mail given in the `Author`_ section.
 
 For overall issues, go to
-`GitHub <https://github.com/barseghyanartur/claude-opencode-sessions/issues>`_.
+`GitHub <https://github.com/barseghyanartur/claude-sessions-importer/issues>`_.
 
 Author
 ======

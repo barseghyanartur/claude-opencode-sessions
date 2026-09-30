@@ -7,8 +7,8 @@ tokens on browsing. `/codex-sessions:import` turns this repository's Codex
 sessions into Claude Code conversations. After that, Claude Code's own
 `/resume` picker is the browsable list, and Enter loads a session.
 
-This is the Codex counterpart of `claude-opencode-sessions`
-(https://github.com/barseghyanartur/claude-opencode-sessions), which does
+This is the Codex counterpart of `opencode-sessions`
+(../opencode-sessions/, the sibling plugin in this same monorepo), which does
 the same for opencode. The two packages don't share code (different source
 formats — a SQLite database there, JSONL rollout files here) but follow the
 same shape: `models.py` / `scope.py` / `importer.py` / `import_command.py`

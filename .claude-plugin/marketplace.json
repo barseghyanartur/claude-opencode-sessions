@@ -8,8 +8,13 @@
   "plugins": [
     {
       "name": "opencode-sessions",
-      "source": "./",
+      "source": "./plugins/opencode-sessions",
       "description": "Import your opencode sessions for the current repository into Claude Code, so you can open them with /resume. Runs in a hook, without calling the model."
+    },
+    {
+      "name": "codex-sessions",
+      "source": "./plugins/codex-sessions",
+      "description": "Import your Codex CLI sessions for the current repository into Claude Code, so you can open them with /resume. Runs in a hook, without calling the model."
     }
   ]
 }

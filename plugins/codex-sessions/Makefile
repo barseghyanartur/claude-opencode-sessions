@@ -9,7 +9,7 @@ SHELL := /bin/bash
 PACKAGE     := claude-codex-sessions
 PLUGIN      := codex-sessions
 MARKETPLACE := barseghyanartur
-GITHUB_REPO := barseghyanartur/claude-codex-sessions
+GITHUB_REPO := barseghyanartur/claude-sessions-importer
 UV          ?= uv
 VERSION     := $(shell $(UV) version --short 2>/dev/null)
 
@@ -65,7 +65,7 @@ dev: ## Start Claude Code with the plugin loaded from this checkout
 	claude --plugin-dir "$(CURDIR)"
 
 install-local: ## Install the plugin from this checkout through a local marketplace
-	claude plugin marketplace add "$(CURDIR)"
+	claude plugin marketplace add "$(CURDIR)/../.."  # marketplace.json lives at the monorepo root
 	claude plugin install $(PLUGIN)@$(MARKETPLACE)
 
 uninstall-local: ## Remove the local marketplace and the plugin
@@ -81,7 +81,7 @@ uninstall-local: ## Remove the local marketplace and the plugin
 #   git commit -am "Release $(uv version --short)"
 #   make test-release        # check, build, twine check, upload to TestPyPI
 #   make release             # the same, upload to PyPI
-#   make tag                 # tag vX.Y.Z and push (plugin users get the update)
+#   make tag                 # tag <plugin>-vX.Y.Z and push (plugin users get the update)
 #
 # Uploads use twine with the API tokens in ~/.pypirc ([pypi] and [testpypi],
 # username __token__), so no credentials are typed.
@@ -110,10 +110,10 @@ test-release: check build check-build ## Upload to TestPyPI (credentials from ~/
 release: check build check-build ## Upload to PyPI (credentials from ~/.pypirc)
 	$(UV) run twine upload dist/* --verbose
 
-tag: ## Tag vX.Y.Z and push (publishes the plugin version to marketplace users)
+tag: ## Tag <plugin>-vX.Y.Z and push (publishes the plugin version to marketplace users)
 	@test -z "$$(git status --porcelain)" || { echo "commit your changes first"; exit 1; }
-	git tag -a v$(VERSION) -m "v$(VERSION)"
-	git push origin HEAD v$(VERSION)
+	git tag -a $(PLUGIN)-v$(VERSION) -m "$(PLUGIN) v$(VERSION)"
+	git push origin HEAD $(PLUGIN)-v$(VERSION)
 
 submit: ## Print what Anthropic's community-marketplace form asks for
 	@echo "Form (individuals): https://platform.claude.com/plugins/submit"

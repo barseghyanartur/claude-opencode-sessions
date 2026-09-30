@@ -34,10 +34,10 @@ dependencies = []
 claude-opencode-sessions = "claude_opencode_sessions.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/barseghyanartur/claude-opencode-sessions"
-Repository = "https://github.com/barseghyanartur/claude-opencode-sessions"
-Issues = "https://github.com/barseghyanartur/claude-opencode-sessions/issues"
-Changelog = "https://github.com/barseghyanartur/claude-opencode-sessions/blob/main/CHANGELOG.rst"
+Homepage = "https://github.com/barseghyanartur/claude-sessions-importer/tree/main/plugins/opencode-sessions"
+Repository = "https://github.com/barseghyanartur/claude-sessions-importer"
+Issues = "https://github.com/barseghyanartur/claude-sessions-importer/issues"
+Changelog = "https://github.com/barseghyanartur/claude-sessions-importer/blob/main/plugins/opencode-sessions/CHANGELOG.rst"
 
 [dependency-groups]
 dev = [

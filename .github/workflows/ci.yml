@@ -1,0 +1,42 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: ${{ matrix.plugin }} · py${{ matrix.python }} · ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        plugin: [opencode-sessions, codex-sessions]
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+    defaults:
+      run:
+        working-directory: plugins/${{ matrix.plugin }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: uv sync
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy
+      - run: uv run pytest --cov --cov-report=term
+      - run: make version-check
+
+  plugin:
+    name: claude plugin validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install -g @anthropic-ai/claude-code
+      - run: claude plugin validate --strict .

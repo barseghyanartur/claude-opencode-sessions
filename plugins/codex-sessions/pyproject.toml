@@ -34,10 +34,10 @@ dependencies = []
 claude-codex-sessions = "claude_codex_sessions.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/barseghyanartur/claude-codex-sessions"
-Repository = "https://github.com/barseghyanartur/claude-codex-sessions"
-Issues = "https://github.com/barseghyanartur/claude-codex-sessions/issues"
-Changelog = "https://github.com/barseghyanartur/claude-codex-sessions/blob/main/CHANGELOG.rst"
+Homepage = "https://github.com/barseghyanartur/claude-sessions-importer/tree/main/plugins/codex-sessions"
+Repository = "https://github.com/barseghyanartur/claude-sessions-importer"
+Issues = "https://github.com/barseghyanartur/claude-sessions-importer/issues"
+Changelog = "https://github.com/barseghyanartur/claude-sessions-importer/blob/main/plugins/codex-sessions/CHANGELOG.rst"
 
 [dependency-groups]
 dev = [

@@ -9,8 +9,8 @@ claude-codex-sessions
 
 .. Internal references
 
-.. _claude-codex-sessions: https://github.com/barseghyanartur/claude-codex-sessions/
-.. _docs/design.md: https://github.com/barseghyanartur/claude-codex-sessions/blob/main/docs/design.md
+.. _claude-codex-sessions: https://github.com/barseghyanartur/claude-sessions-importer/tree/main/plugins/codex-sessions/
+.. _docs/design.md: https://github.com/barseghyanartur/claude-sessions-importer/blob/main/plugins/codex-sessions/docs/design.md
 
 Bring your `Codex CLI`_ sessions into `Claude Code`_.
 
@@ -22,12 +22,12 @@ Bring your `Codex CLI`_ sessions into `Claude Code`_.
     :target: https://pypi.python.org/pypi/claude-codex-sessions/
     :alt: Supported Python versions
 
-.. image:: https://github.com/barseghyanartur/claude-codex-sessions/actions/workflows/ci.yml/badge.svg?branch=main
-   :target: https://github.com/barseghyanartur/claude-codex-sessions/actions
+.. image:: https://github.com/barseghyanartur/claude-sessions-importer/actions/workflows/ci.yml/badge.svg?branch=main
+   :target: https://github.com/barseghyanartur/claude-sessions-importer/actions
    :alt: Build Status
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
-   :target: https://github.com/barseghyanartur/claude-codex-sessions/#License
+   :target: https://github.com/barseghyanartur/claude-sessions-importer/#License
    :alt: MIT
 
 `claude-codex-sessions`_ is a Claude Code plugin (and a command-line tool)
@@ -60,14 +60,14 @@ As a Claude Code plugin
 -----------------------
 .. code-block:: sh
 
-    claude plugin marketplace add barseghyanartur/claude-codex-sessions
+    claude plugin marketplace add barseghyanartur/claude-sessions-importer
     claude plugin install codex-sessions@barseghyanartur
 
 Or inside a Claude Code session:
 
 .. code-block:: text
 
-    /plugin marketplace add barseghyanartur/claude-codex-sessions
+    /plugin marketplace add barseghyanartur/claude-sessions-importer
     /plugin install codex-sessions@barseghyanartur
 
 Update later with ``claude plugin update codex-sessions@barseghyanartur``,
@@ -234,7 +234,7 @@ Support
 For security issues contact me at the e-mail given in the `Author`_ section.
 
 For overall issues, go to
-`GitHub <https://github.com/barseghyanartur/claude-codex-sessions/issues>`_.
+`GitHub <https://github.com/barseghyanartur/claude-sessions-importer/issues>`_.
 
 Author
 ======
