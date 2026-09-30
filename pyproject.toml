@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "claude-opencode-sessions"
-version = "0.1.1"
+version = "0.1.2"
 description = "Import your opencode sessions for the current repository into Claude Code, so they open with /resume."
 readme = "README.rst"
 requires-python = ">=3.10"

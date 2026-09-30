@@ -1,7 +1,7 @@
 {
   "name": "opencode-sessions",
   "displayName": "opencode sessions",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Import your opencode sessions for the current repository into Claude Code, so you can open them with /resume. Runs in a hook, without calling the model.",
   "author": {
     "name": "Artur Barseghyan",
