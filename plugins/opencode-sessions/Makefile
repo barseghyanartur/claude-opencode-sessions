@@ -99,7 +99,7 @@ bump: ## Set the version: make bump BUMP=patch|minor|major, or VERSION=x.y.z
 	@echo "Now add a $$($(UV) version --short) section to CHANGELOG.rst"
 
 build: clean ## Build sdist + wheel into dist/
-	$(UV) build
+	$(UV) build --out-dir dist  # explicit: in a uv workspace, plain `uv build` writes to the workspace root's dist/ instead of this plugin's own
 
 check-build: ## Check dist/ (twine check)
 	$(UV) run twine check --strict dist/*

@@ -49,5 +49,5 @@ dev: ## Start Claude Code with both plugins loaded from this checkout
 	claude --plugin-dir "$(CURDIR)"
 
 clean: ## Remove build artefacts from every plugin, plus the shared .venv
-	rm -rf .venv
+	rm -rf .venv dist  # dist/ here only if `uv build` was ever run from the root by mistake
 	@for p in $(PLUGINS); do $(MAKE) -C plugins/$$p clean; done
