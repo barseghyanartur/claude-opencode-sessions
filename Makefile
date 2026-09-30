@@ -9,7 +9,7 @@ SHELL := /bin/bash
 PACKAGE     := claude-opencode-sessions
 PLUGIN      := opencode-sessions
 MARKETPLACE := barseghyanartur
-GITHUB_REPO := barseghyanartur/claude-plugin-opencode-sessions
+GITHUB_REPO := barseghyanartur/claude-opencode-sessions
 UV          ?= uv
 VERSION     := $(shell $(UV) version --short 2>/dev/null)
 
