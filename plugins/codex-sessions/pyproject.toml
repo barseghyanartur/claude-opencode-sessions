@@ -1,0 +1,90 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "claude-codex-sessions"
+version = "0.1.0"
+description = "Import your Codex CLI sessions for the current repository into Claude Code, so they open with /resume."
+readme = "README.rst"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Artur Barseghyan", email = "artur.barseghyan@gmail.com" }]
+keywords = ["codex", "claude", "claude-code", "plugin", "sessions", "llm", "agents"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development",
+    "Typing :: Typed",
+]
+dependencies = []
+
+[project.scripts]
+claude-codex-sessions = "claude_codex_sessions.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/barseghyanartur/claude-codex-sessions"
+Repository = "https://github.com/barseghyanartur/claude-codex-sessions"
+Issues = "https://github.com/barseghyanartur/claude-codex-sessions/issues"
+Changelog = "https://github.com/barseghyanartur/claude-codex-sessions/blob/main/CHANGELOG.rst"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "ruff>=0.6",
+    "mypy>=1.11",
+    "twine>=6",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/claude_codex_sessions"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/claude_codex_sessions",
+    "README.rst",
+    "CHANGELOG.rst",
+    "LICENSE",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["src/claude_codex_sessions/tests"]
+addopts = "-ra"
+
+[tool.coverage.run]
+source = ["claude_codex_sessions"]
+omit = ["*/tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "C4"]
+ignore = ["SIM300", "RUF001"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/claude_codex_sessions/tests/*" = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src/claude_codex_sessions"]
+exclude = ["src/claude_codex_sessions/tests/"]

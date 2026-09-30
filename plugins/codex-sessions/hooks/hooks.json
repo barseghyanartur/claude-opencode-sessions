@@ -1,0 +1,17 @@
+{
+  "description": "Runs /codex-sessions:import locally, without a model call.",
+  "hooks": {
+    "UserPromptExpansion": [
+      {
+        "matcher": "^(codex-sessions:)?import$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/scripts/codex-sessions\" hook",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}
